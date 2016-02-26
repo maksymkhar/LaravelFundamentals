@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -30,45 +32,10 @@ Route::group(['middleware' => ['web']], function () {
     //
 });
 
-interface Fuel {
-    public function getPrice();
-}
 
-class Jeep
-{
-    public function __construct(Fuel $fuel)
-    {
-        $this->fuel = $fuel;
-    }
 
-    public function refuel($litres)
-    {
-        return $litres * $this->fuel->getPrice();
-    }
-}
+$car = $this->app->bind('\App\Cars\Fuel', '\App\Cars\Petrol');
+$car = $this->app->make('\App\Cars\Jeep');
 
-class Petrol implements Fuel
-{
-    public function getPrice()
-    {
-        return 130.7;
-    }
-}
 
-class Gasoline implements Fuel
-{
-
-    public function getPrice()
-    {
-        return 101.7;
-    }
-}
-
-$petrol = new Petrol;
-$car = new Jeep($petrol);
-
-$cost = $car->refuel(60);
-
-//echo $cost;
-
-dd($this->app);
+echo $car->refuel(60);
