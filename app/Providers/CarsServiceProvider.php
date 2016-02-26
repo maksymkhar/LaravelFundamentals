@@ -23,7 +23,8 @@ class CarsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('\App\Cars\Fuel', '\App\Cars\Petrol');
+        $fuel = config('cars.fuel');
+        $this->app->bind('\App\Cars\Fuel', $fuel);
 
     }
 }
