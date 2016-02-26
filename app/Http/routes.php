@@ -34,8 +34,5 @@ Route::group(['middleware' => ['web']], function () {
 
 
 
-$car = $this->app->bind('\App\Cars\Fuel', '\App\Cars\Petrol');
 $car = $this->app->make('\App\Cars\Jeep');
-
-
 echo $car->refuel(60);

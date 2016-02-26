@@ -167,6 +167,7 @@ return [
 
         // CUSTOM
         //App\Providers\MenuServiceProvider::class,
+        App\Providers\CarsServiceProvider::class,
 
     ],
 
