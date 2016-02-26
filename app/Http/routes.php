@@ -29,3 +29,46 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+interface Fuel {
+    public function getPrice();
+}
+
+class Jeep
+{
+    public function __construct(Fuel $fuel)
+    {
+        $this->fuel = $fuel;
+    }
+
+    public function refuel($litres)
+    {
+        return $litres * $this->fuel->getPrice();
+    }
+}
+
+class Petrol implements Fuel
+{
+    public function getPrice()
+    {
+        return 130.7;
+    }
+}
+
+class Gasoline implements Fuel
+{
+
+    public function getPrice()
+    {
+        return 101.7;
+    }
+}
+
+$petrol = new Petrol;
+$car = new Jeep($petrol);
+
+$cost = $car->refuel(60);
+
+//echo $cost;
+
+dd($this->app);
